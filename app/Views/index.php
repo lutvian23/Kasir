@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <title>kasir</title>
 </head>
 
@@ -42,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="#" onclick="pageLink('/product')"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -74,14 +76,74 @@
         </div>
     </aside>
 
-    <div class="p-4 sm:ml-64">
-        <div class="" id="content"></div>
+    <!-- SCRIPT CONFIG -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
+
+
+    <!-- CONTENT -->
+    <div class="p-4 sm:ml-64 relative">
+        <div class="relative z-0" id="content"></div>
+
+        <div class="btn btn-ghost absolute z-10 bottom-0 right-0 hidden mt-2 mr-2" id="alert_danger">
+            <div role="alert" class="alert alert-error flex flex-col">
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Data Gagal di terima !</span>
+                </div>
+                <div id="message_danger">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert_success" class="btn btn-ghost absolute w-fit bottom-0 hidden">
+            <div role="alert" class="alert alert-info ">
+                <span class="text-white font-bold">Success...</span>
+            </div>
+        </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+    // Alert Warning
+    function alertMessage() {
+        $('#alert_danger').removeClass('hidden')
+        const alrtDanger = setTimeout(() => {
+            $('#alert_danger').addClass('hidden');
+            $('#message_danger').html('');
+        }, 5000)
+    }
+    // Allert Success
+    function alertSuccess() {
+        $('#alert_success').removeClass('hidden')
+        setTimeout(() => {
+            $('#alert_success').addClass('hidden')
+        }, 5000)
+    }
+    var globalUrl
 
+    function pageLink(dataUrl) {
+        globalUrl = dataUrl
+        $.ajax({
+            url: dataUrl,
+            method: "GET",
+            success: function(response) {
+                $('#content').html(response)
+                localStorage.setItem("currentPage", dataUrl)
+            }
+        })
+    }
+    console.log(globalUrl)
+    if (globalUrl === undefined) {
+        pageLink(localStorage.getItem("currentPage"))
+    }
     </script>
 </body>
 

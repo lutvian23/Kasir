@@ -8,8 +8,8 @@ class Home extends BaseController
     {
         return view('index');
     }
-    public function login(): string
+    public function product(): string
     {
-        return view('/page/login');
+        return view('/page/product');
     }
 }
