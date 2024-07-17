@@ -87,7 +87,7 @@
     <div class="p-4 sm:ml-64 relative">
         <div class="relative z-0" id="content"></div>
 
-        <div class="btn btn-ghost absolute z-10 bottom-0 right-0 hidden mt-2 mr-2" id="alert_danger">
+        <div class="btn btn-ghost fixed z-20 top-0 right-0 hidden mt-2 mr-2" id="alert_danger">
             <div role="alert" class="alert alert-error flex flex-col">
                 <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
@@ -104,8 +104,8 @@
             </div>
         </div>
 
-        <div id="alert_success" class="btn btn-ghost absolute w-fit bottom-0 hidden">
-            <div role="alert" class="alert alert-info ">
+        <div id="alert_success" class="btn btn-ghost absolute top-0 w-[80%] mx-2 mt-2 hidden">
+            <div role="alert" class="alert alert-info">
                 <span class="text-white font-bold">Success...</span>
             </div>
         </div>
@@ -125,7 +125,7 @@
         $('#alert_success').removeClass('hidden')
         setTimeout(() => {
             $('#alert_success').addClass('hidden')
-        }, 5000)
+        }, 2000)
     }
     var globalUrl
 

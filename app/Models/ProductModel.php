@@ -9,13 +9,13 @@ class ProductModel extends Model
     protected $table            = 'product';
     protected $primaryKey       = 'id_product';
     protected $useAutoIncrement = true;
-    // protected $returnType       = 'array';
+    protected $returnType       = 'array';
     // protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['name_product','category_product','price_product'];
+    protected $allowedFields    = ['name_product','price_product','category_product'];
 
-//     protected bool $allowEmptyInserts = true;
-//     protected bool $updateOnlyChanged = true;
+    protected bool $allowEmptyInserts = true;
+    protected bool $updateOnlyChanged = true;
 
 //     protected array $casts = [];
 //     protected array $castHandlers = [];
