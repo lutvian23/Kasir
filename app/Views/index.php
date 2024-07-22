@@ -144,6 +144,16 @@
     if (globalUrl === undefined) {
         pageLink(localStorage.getItem("currentPage"))
     }
+
+    function currency(value) {
+        const locale = 'id-ID'
+        const options = {
+            style: 'currency',
+            currency: 'IDR'
+        }
+        var IDR = new Intl.NumberFormat(locale, options).format(value)
+        return IDR
+    }
     </script>
 </body>
 
