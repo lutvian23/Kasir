@@ -233,12 +233,12 @@ $.ajax({
 
 
 
-var payment = $('#received').val()
 $('#actTransaction').on("submit", function(e) {
     e.preventDefault()
+    var payment = $('#received').val()
     var paymentType = $('input[name="radio-1"]:checked').val()
-    console.log(paymentType)
-    if (payment >= total) {
+    console.log(payment, total)
+    if (Number(payment) <= Number(total)) {
         $('#message_danger').append('Jumlah yang di berikan tidak cukup')
         alertMessage()
         $('#received').val(0)
